@@ -1,11 +1,52 @@
 pragma solidity ^0.6.0;
 import "./EnumerableSet.sol";
 abstract contract InterOftoken{
+    //解析文档
     string public readme;
+    //资产类型
     string public type_;
+    /**
+    *@dev 获取owner资产数量
+    *@owner 用户
+     */
     function getlength(address owner)public view virtual returns(uint256 len_);
+    /**
+    *@dev 获取资产全局index
+    *@owner 用户
+    *@index 资产在用户级的索引
+     */
     function getIndexByIndex(address owner,uint256 index)public view virtual returns(uint256 A_asset);
+    /**
+    *@dev 获取资产所属地址
+    *@index 资产在全局级的索引
+     */
     function ownerOf(uint256 tokenId) public view virtual  returns (address);
+    /**
+    *@dev 获取所有资产索引
+    *@owner 用户
+     */
+    function getBalances(address owner) public view virtual returns (uint256[] memory asset_);
+    /**
+    *@dev 获取具体资产
+    *@index_ 全局级索引
+     */
+    function getBalancebyIndex(uint256 index_) public view virtual returns (string memory  asset_);
+    /**
+    *@dev 设置解析文档 onlyowner
+    *@readme_ 解析文档
+     */
+    function setReadMe(string calldata readme_)external virtual;
+    /**
+    *@dev 改变类型  onlyowner
+    *@type_0 类型
+     */
+    function settype(string calldata type_0)external virtual;
+    /**
+    *@dev 改变Asset地址 onlyowner
+    *@regiadd_ Asset地址
+    *@version_ 版本
+     */
+    function changeRegiAdd(address regiadd_,uint256 version_)external virtual returns(bool);
 }
 contract Asset{
     using EnumerableSet for EnumerableSet.AddressSet;
