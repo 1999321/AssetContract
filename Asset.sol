@@ -1,6 +1,7 @@
 pragma solidity ^0.6.0;
 import "./EnumerableSet.sol";
 abstract contract InterOftoken{
+    //该合约在对token进行锻造/add/交易(一般在ERC721等)，需要调用getstate/setstate。
     //解析文档
     string public readme;
     //资产类型
